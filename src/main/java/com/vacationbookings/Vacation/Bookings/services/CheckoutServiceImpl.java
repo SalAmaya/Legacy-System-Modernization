@@ -36,6 +36,8 @@ public class CheckoutServiceImpl implements CheckoutService {
         Set<CartItem> cartItems = purchase.getCartItems();
 
 
+        if (cartItems == null || cartItems.isEmpty()) {    return new PurchaseResponse("Cart is empty!");}
+
         //cart.setId(cartId);
         String orderTrackingNumber = UUID.randomUUID().toString();
         cart.setOrderTrackingNumber(orderTrackingNumber);
@@ -50,5 +52,6 @@ public class CheckoutServiceImpl implements CheckoutService {
         //cartItemRepository.saveAll(cartItems);
 
         return new PurchaseResponse(orderTrackingNumber);
+
     }
 }
